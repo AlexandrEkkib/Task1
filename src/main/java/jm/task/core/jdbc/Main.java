@@ -11,15 +11,11 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        UserDao userDao = new UserDaoJDBCImpl();
+
         UserService userService = new UserServiceImpl();
 
         // 1.Создание таблицы
-        try {
-            userDao.createUsersTable();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+        userService.createUsersTable();
 
         // 2.Добавление 4 пользователей
         userService.saveUser("Alice", "Smith", (byte) 30);
@@ -34,10 +30,10 @@ public class Main {
         }
 
         // 4.Очистка таблицы
-        userDao.cleanUsersTable();
+        userService.cleanUsersTable();
 //
         //5. Удаление таблицы
-        userDao.dropUsersTable();
+        userService.dropUsersTable();
 
   }
 }
